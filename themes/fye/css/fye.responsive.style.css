@@ -1,0 +1,192 @@
+/* Specific overrides for screen sizes */
+
+/* Smartphone portrait */
+@media only screen and (max-width:320px) {
+  #ui-global-bar-nav {
+  	display: none;
+  }
+  #featured-image {
+  	display: none;
+  }  #menu-bar .menu-wrapper ul {
+  	border: none;
+  }
+  #menu-bar .menu-wrapper ul li {
+	width: 100%;
+	border: none;
+	background-position: 10px center;
+	background-image: none;
+	text-indent: 0;
+  }
+  #menu-bar .menu-wrapper ul li a {
+	border: 2px #666;
+	border-top-style: groove;
+	text-align: left;
+	padding: 10px 30px 10px 10px;
+	background-image: url('images/arrow-btn-icon.png');
+	background-repeat: no-repeat;
+	background-position: right center;
+	width: auto;
+  }
+  #menu-bar .menu-wrapper ul li:first-child a { border:none; }
+  #menu-bar .menu-wrapper ul li:hover, #menu-bar .menu-wrapper ul li:focus, #menu-bar .menu-wrapper ul li:active {
+	background-image: none;
+  }
+  div#content-wrapper { 
+	margin-top: 0; 
+  	margin-bottom: 0;
+  }
+  #main-content .content-margin {
+  	margin: 0;
+  }
+  #footer-wrapper {
+  	margin-top: 0;
+  }
+  #footer-wrapper .block {
+  	float: none !important;
+	width: 100% !important;
+  }
+ }
+/* Smartphone landscape */
+@media only screen and (min-width:321px) and (max-width:480px) {
+  #ui-global-bar-nav {
+  	display: none;
+  }
+  #menu-bar .menu-wrapper ul {
+  	border: none;
+  }
+  #menu-bar .menu-wrapper ul li {
+	width: 100%;
+	border: none;
+	background-position: 10px center;
+	background-image: none;
+	text-indent: 0;
+  }
+  #menu-bar .menu-wrapper ul li a {
+	border: 2px #666;
+	border-top-style: groove;
+	text-align: left;
+	padding: 10px 30px 10px 10px;
+	background-image: url('images/arrow-btn-icon.png');
+	background-repeat: no-repeat;
+	background-position: right center;
+	width: auto;
+  }
+  #menu-bar .menu-wrapper ul li:first-child a { border:none; }
+  #menu-bar .menu-wrapper ul li:hover, #menu-bar .menu-wrapper ul li:focus, #menu-bar .menu-wrapper ul li:active {
+	background-image: none;
+  }
+  #featured-image {
+	opacity: 0;
+  }
+  div#content-wrapper { 
+	margin-top: 0; 
+  	margin-bottom: 0;
+  }
+  #main-content .content-margin {
+  	margin: 0;
+  }
+  #footer-wrapper {
+  	margin-top: 0;
+  }
+  #footer-wrapper .block {
+  	float: none !important;
+	width: 100% !important;
+  }
+}
+/* Tablet portrait */
+@media only screen and (min-width:481px) and (max-width:768px) {
+  #menu-bar-wrapper {
+  	max-width: 40%;
+  }
+  #menu-bar .menu-wrapper ul {
+  	border: none;
+  }
+  #menu-bar .menu-wrapper ul li {
+	width: 100%;
+	border: none;
+	background-position: 10px center;
+	background-image: none;
+	text-indent: 0;
+  }
+  #menu-bar .menu-wrapper ul li a {
+	border: 2px #666;
+	border-top-style: groove;
+	text-align: left;
+	padding: 10px 30px 10px 10px;
+	background-image: url('images/arrow-btn-icon.png');
+	background-repeat: no-repeat;
+	background-position: right center;
+	width: auto;
+  }
+  #menu-bar .menu-wrapper ul li:first-child a { border:none; }
+  #menu-bar .menu-wrapper ul li:hover, #menu-bar .menu-wrapper ul li:focus, #menu-bar .menu-wrapper ul li:active {
+	background-image: none;
+  }
+  
+  #ui-global-links { display: none; } /* remove ui-links from global bar */
+
+  div#featured-image img {
+	left: 50%;
+	margin-left: -960px;   /* 50% */
+  }
+  
+}
+/* Tablet landscape */
+@media only screen and (min-width:769px) and (max-width:1024px) {
+  
+  /* MENU BAR OVERRIDES */
+  #menu-bar > ul > li {
+  	width: 100%;
+  }
+  
+  #main-content .content-overlay {
+  	background-image: url('images/bg-overlays/fye-content-overlay.png') !important;
+  }
+  
+  /* positioning and overrides for sidebar-second */
+  #main-content .content-margin {
+  }
+  .region-sidebar-second {
+  	margin-top: -170px;
+	margin-right: -70px;
+  }
+  
+  /* Override responsive layout, adjust main content width for pages that use sidebar-second */
+  .region-sidebar-second { margin-right: -20px; }
+  .sidebar-second .region-content { margin-right: 30%; margin-left: 0; }
+  div#content-wrapper .content-inner { margin-right: 0; }
+  
+  div#featured-image img {
+	left: 50%;
+	margin-left: -960px;   /* 50% */
+  }
+    
+}
+/* Standard layout */
+@media only screen and (min-width:1025px) {
+  th,td {
+    padding: 10px 14px;
+  }
+  div#content-wrapper {
+	margin-top: 200px;
+  }
+  
+  #main-content .content-overlay {
+  	background-image: url('images/bg-overlays/fye-content-overlay.png') !important;
+  }
+
+  /* positioning and overrides for sidebar-second */
+  #main-content .content-margin {
+  	margin-right: 3.5%;
+  }
+  .region-sidebar-second {
+  	margin-top: -170px;
+	margin-right: -70px;
+  }
+  
+  /* Override responsive layout, adjust main content width for pages that use sidebar-second */
+  .sidebar-second .region-content { margin-right: 30%; margin-left: 0; }
+  div#content-wrapper .content-inner { margin-right: 0; }
+  
+
+}

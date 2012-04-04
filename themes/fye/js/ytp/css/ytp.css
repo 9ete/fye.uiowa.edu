@@ -1,0 +1,108 @@
+/* 
+  Sample CSS for "Accessible Controls for the YouTube Embedded Video Player"
+  http://wac.osu.edu/examples/youtube-player-controls/
+*/
+div.ytplayerbox 
+{
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  font-size: x-small;
+  border: 1px solid #999;
+  background: #eee;
+  margin: 0;
+  padding: 5px;
+}
+ul.ytplayerbuttons 
+{
+  margin: 3px 0 0 0; padding: 5px 3px;
+}
+ul.ytplayerbuttons li 
+{
+  list-style-type: none;
+  display:inline;
+  border: 1px solid #666;
+  margin: 0 1px 0 0;
+}
+ul.ytplayerbuttons a 
+{ 
+  padding: 3px;
+  text-decoration: none;
+  border: none;
+  display:inline-block; /* helps with IE7 and earlier rendering */
+  background-color: #333 !important;
+  color: #fff;
+}
+ul.ytplayerbuttons a:link, ul.ytplayerbuttons a:visited
+{
+  color: #fff;
+  background: #222;
+}
+ul.ytplayerbuttons a:hover, ul.ytplayerbuttons a:active, ul.ytplayerbuttons a:focus
+{
+  background: #555;
+}
+/* or use your own offleft hiding style declaration for this */
+div.ytplayerbox h3.semantic
+{
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+div.ytplayerbox h3.playlisth
+{
+  font-size: small;
+  color: #333;
+  line-height:0.8;
+  margin: 12px 0 3px 0;
+}
+div.ytplayerbox h4 
+{
+  font-size: small;
+  color: #555;
+  margin: 3px 0 0 0;
+}
+ul.ytplaylistl
+{
+  background: #999;
+  padding: 1px;
+  margin: 0;
+}
+ul.ytplaylistl li 
+{
+  list-style-type: none;
+  font-size: small;
+  background: transparent url("../img/control_play.png") no-repeat 3px .3em;
+  padding: 5px 0 3px 21px;
+  margin: 0;
+}
+ul.ytplaylistl li.ytlisteven
+{
+  background-color: #ebebeb;
+}
+ul.ytplaylistl li.ytlistodd
+{
+  background-color: #ddd;
+}
+ul.ytplaylistl li a
+{
+  font-weight: bold;
+  text-decoration: none;
+  border: none;
+  display: block;
+  margin: 0 3px 0 1px;
+}
+ul.ytplaylistl li a:link
+{
+  color: #000;
+}
+ul.ytplaylistl li a:visited
+{
+  color: #333;
+}
+ul.ytplaylistl li a:hover, ul.ytplaylistl li a:active, ul.ytplaylistl li a:focus
+{
+  color: #fff;
+  background-color: #333;
+}

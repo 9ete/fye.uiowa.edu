@@ -1,0 +1,269 @@
+/******************************************************** UI Branding Styles ********************************************************/
+#ui-wrapper {
+	border-top: 4px solid #fff;
+}
+
+#ui-global-bar-nav {
+	float: right;
+}
+
+#ui-global-bar {
+	height: 26px;
+	padding: 5px;
+}
+
+#ui-logo a{
+	text-indent: -9999px;
+	height: 30px;
+	width: 185px;
+	float:left;
+	margin-left:5px;
+}
+
+/* remove browser default styling */
+#gsa-search fieldset {
+	border: none;
+	margin: 0;
+	padding: 0;
+	background-color: transparent;
+}
+
+#ui-global-links ul {
+	margin: 0;
+	padding: 0;
+	margin-top: 2px; /* align links to search box */
+	margin-right: 5px;
+}
+
+#ui-global-links li {
+	list-style: none;
+	padding: 0 5px;
+	border-left: 1px solid;
+}
+
+#ui-global-links li:first-child {
+	border: none;
+}
+
+#ui-global-links a {
+	text-decoration: none;
+	font-size: 70%;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+
+#ui-global-links a:hover,
+#ui-global-links a:active,
+#ui-global-links a:focus {
+	text-decoration: underline;
+}
+
+/* position ui-global-bar items inline */
+#ui-global-links li {
+	display: inline;
+	vertical-align: middle;
+}
+
+/* position form elements horizontally */
+#gsa-search input,
+#gsa-search select {
+	margin: 0;
+}
+
+/* specify legend color to meet accessibility contrast ration standard */
+#gsa-search legend {
+	color: #fff;
+}
+
+#ui-global-links,
+div#gsa-search {
+	float: left;
+}
+
+#gsa-search form {
+	margin: 0 !important;
+}
+
+#search-box {
+	border: 1px solid;
+	padding: 1px;
+	position: relative;
+	margin-right: 10px;
+		
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px; /* future proofing */
+	-khtml-border-radius: 3px; /* for old Konqueror browsers */
+}
+
+#search-terms,
+#sitesearch {
+	border: none;
+	padding: 2px 5px;
+}
+
+#search-terms {
+	width: 10em;
+	vertical-align: middle;
+	background-color: transparent;
+}
+
+#sitesearch { 
+	vertical-align: top;
+	line-height: 18px; /* safari hack for select height */
+}
+
+#search-box,
+#submit-search {
+	float: left;
+}
+
+#submit-search {
+	text-indent: -9999px;
+	height: 2em;
+	width: 2em;
+	cursor: pointer;
+	margin-left: 10px;
+	border: solid 1px;
+	
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px; /* future proofing */
+	-khtml-border-radius: 4px; /* for old Konqueror browsers */
+	
+	background: url('images/ui-global-bar/search-icon-black.png') no-repeat; /* Old browsers */
+	background-position: center;
+	
+	font-size: 1em; /* ie hack for neg indent */
+	display:block; /* ie hack for neg indent */
+	line-height: 0; /* ie hack for neg indent */
+}
+
+/****************************** skin-a ******************************/
+
+.skin-a #ui-wrapper {
+	background-color: #000;
+	border-color: #FFE100;
+}
+
+.skin-a #ui-logo a{
+	background: url('images/ui-global-bar/ui-logo-global-bar-white.png') no-repeat;
+	color:#fff;
+}
+
+/* change links border color */
+.skin-a #ui-global-links li { border-color: #fff; }
+
+/* change links colors */
+.skin-a #ui-global-links a{ color: #fff; }
+
+/* change search box background and border color */
+.skin-a #search-box { 
+	background-color: #fff;
+	border-color: #fff;
+}
+
+/* change search terms input text color */
+.skin-a #search-terms { color: #333; }
+
+/* change scope select background color */
+.skin-a #sitesearch { 
+	background-color: #ebebeb;
+	color: #111;
+}
+
+/* change search button background and border color */
+.skin-a #submit-search {
+	border: solid 1px #FFDB76;
+	background-color: #F6C830;
+}
+
+/* change search button hightlight color for active, focus and hover states */
+.skin-a input#submit-search:hover, .skin-a input#submit-search:focus, .skin-a input#submit-search:active { background-color: #FFDB76; }
+
+/****************************** skin-b ******************************/
+
+.skin-b #ui-wrapper {
+	background-color: #FFE100;
+	border-color: #000;
+}
+
+.skin-b #ui-logo a{
+	background: url('images/ui-global-bar/ui-logo-global-bar-black.png') no-repeat;
+	color:#000;
+}
+
+/* change links border color */
+.skin-b #ui-global-links li { border-color: #333; }
+
+/* change links colors */
+.skin-b #ui-global-links a{ color: #1a1a1a; }
+
+/* change search box background and border color */
+.skin-b #search-box { 
+	background-color: #fff;
+	border-color: #fff;
+}
+
+/* change search terms input text color */
+.skin-b #search-terms { color: #333; }
+
+/* change scope select background color */
+.skin-b #sitesearch { 
+	background-color: #ebebeb;
+	color: #111;
+}
+
+/* change search button background and border color */
+.skin-b #submit-search {
+	border: solid 1px #999;
+	background-color: #ccc;
+}
+
+/* change search button hightlight color for active, focus and hover states */
+.skin-b input#submit-search:hover, .skin-b input#submit-search:focus, .skin-b input#submit-search:active { background-color: #FFDB76; }
+
+/****************************** skin-c ******************************/
+
+.skin-c #ui-wrapper {
+	background: url('images/ui-global-bar/ui-global-bar-gray-texture.png') #000;
+	background-repeat: repeat-x;
+	border: none;
+}
+
+.skin-c #ui-logo a{
+	background: url('images/ui-global-bar/ui-logo-global-bar-white.png') no-repeat;
+	color:#fff;
+}
+
+/* change links border color */
+.skin-c #ui-global-links li { border-color: #fff; }
+
+/* change links colors */
+.skin-c #ui-global-links a{ color: #fff; }
+
+/* change search box background and border color */
+.skin-c #search-box { 
+	background-color: #fff;
+	border-color: #fff;
+}
+
+/* change search terms input text color */
+.skin-c #search-terms { color: #333; }
+
+/* change scope select background color */
+.skin-c #sitesearch { 
+	background-color: #ebebeb;
+	color: #111;
+}
+
+/* change search button background and border color */
+.skin-c #submit-search {
+	border: solid 1px #FFDB76;
+	background-color: #F6C830;
+}
+
+/* change search button hightlight color for active, focus and hover states */
+.skin-c input#submit-search:hover, .skin-c input#submit-search:focus, .skin-c input#submit-search:active { background-color: #FFDB76; }
+
+

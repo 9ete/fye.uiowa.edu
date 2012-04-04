@@ -1,0 +1,526 @@
+// FYE Styles
+
+// Import Core Styles
+@import "less/core.less";
+
+// Variables
+@fyeYellow: #F6C72F;
+@white: #E6E6E6;
+@lightGray: #ebebeb;
+@darkGray: #333;
+@black: #1A1A1A;
+
+// Custom Fonts
+@font-face {
+    font-family: 'Bevan';
+    src: url('fonts/Bevan-webfont.eot');
+    src: url('fonts/Bevan-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Bevan-webfont.woff') format('woff'),
+         url('fonts/Bevan-webfont.ttf') format('truetype'),
+         url('fonts/Bevan-webfont.svg#BevanRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+/******************************** GLOBAL OVERRIDE STYLES ********************************/
+body {
+	background-color: #ccc;
+}
+section {
+	max-width: 100%; //fixes ie and ff issue restraining content to fit it's parent container
+}
+
+#page {
+	position: relative; // sets positioning for featured-image absolute position
+}
+
+a {
+	@easeAnimation(color,.5s); // set global animation for anchor tag links
+}
+
+ul.links li.node-readmore a {
+	@btn();
+}
+
+.page-node #main-content tbody { border: none; }
+.page-node #main-content td { border: dotted 1px #ccc; }
+
+.no-style {
+	outline: none !important;
+	background: transparent !important;
+}
+
+
+/******************************** CUSTOM UI BAR STYLES ********************************/
+#ui-wrapper {
+	@boxShadow (0, 3px, 10px, #000);
+	padding: 3px 0; // add a little more vertical room to ui-bar
+}
+
+#gsa-search #submit-search {
+	@easeAnimation(,.5s);
+}
+
+/******************************** TOP NAVIGATION STYLES ********************************/
+#menu-bar-wrapper, #menu-bar { height: auto; padding: 0; } //override navigation.css
+
+#menu-bar-wrapper {
+	@translucent > .background(#000, .7);
+	border-bottom: solid 4px @fyeYellow;
+	
+	nav#block-system-main-menu {
+		float: none; // override corolla block.css to expand menu-bar to full width
+	}
+
+	ul {
+	
+		li {
+			width: 25%;
+			margin: 0 !important; //override corolla navigation.css styles
+			@boxSizBorderBox;
+			border-right: 2px groove #666;
+			@easeAnimation();
+			
+			&:first-child {
+				border-left: 2px groove #666;
+			}
+			
+			&:hover, &:active, &:focus { 
+				@translucent > .background(#fff, .3);
+				@boxShadowInset();
+			}
+			
+			a {
+				font-family: 'Bevan', times, serif;
+				font-size: 1.5em;
+				padding: 1.09em 0;
+				text-align: center;
+				color: @white;
+				@textShadow(0, -1px, 0, #000);
+				
+				&:hover, &:active, &:focus { 
+					color: @fyeYellow;
+					background: transparent; // override color module background-color
+				}
+			}
+		}
+	}
+	
+	
+	// style top menu active and active trail states
+	ul li.active-trail a,
+	ul li.active-trail a.active {
+		background-color: transparent;
+		color: @fyeYellow;
+		
+		&:hover, &:focus {
+			@translucent > .background(#fff, .2);
+			color: @fyeYellow;
+		}
+	}
+		
+	// Style OnIowa! icon into top menu - use ".menu-item-486" for local development only
+	.menu-item-351 {
+		@imgReplace;
+		background-image: url('images/oniowa-logo.png');
+		background-repeat: no-repeat;
+		background-position: center;
+				
+		&:hover, &:active, &:focus { 
+			background-image: url('images/oniowa-logo-hover.png');
+		} 
+	}
+}
+
+/******************************** FEATURED IMAGE STYLES ********************************/
+div#featured-image {
+	position: absolute;
+	top: 40px;
+	width: 100%;
+	overflow: hidden;
+	background-color: #1a1a1a;
+	@boxShadow(0, 20px, 100px, #000);
+	z-index: -1;
+	height: 430px;
+	
+	@easeAnimation(opacity);
+}
+
+div.featured-image-overlay {
+	background-repeat: repeat;
+	min-height: 430px;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+div#featured-image img {
+	
+	// set relative positing for image handling
+	.view-content { position: relative; }
+	
+	/* Set rules to fill background */
+	min-height: 430px;
+	min-width: 1920px;
+
+	/* Set up proportionate scaling */
+	width: 100%;
+	height: auto;
+
+	/* Set up positioning */
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 0;
+}
+
+/******************************** VIEWS GLOBAL STYLES ********************************/
+div#content-wrapper {
+	.view {
+	
+		div.views-row {
+			padding-top: 20px;
+			border-top: 1px dotted #666;
+		}
+	}
+}
+
+/******************************** FYE TESTMINOIALS VIEWS STYLES ********************************/
+.view-fye-testimonial {
+	
+	.views-field-field-fye-image {
+		float: right;
+	}
+	
+	p {
+		font-size: 1.2em;
+	}
+		
+	.views-slideshow-cycle-main-frame,
+	.views_slideshow_cycle_slide, 
+	.views_slideshow_cycle_slide img {
+		width: 100% !important;
+		max-width: 100%;
+		height: auto;
+		position: relative;
+	}
+	
+	.views-slideshow-controls-bottom a{
+		@btn();
+	}
+	
+	.views-slideshow-controls-text-pause {
+		display: none;
+	}
+}
+
+
+/******************************** MAIN CONTENT GLOBAL STYLES ********************************/
+div#content-wrapper {
+	margin-top: 20px;
+	@easeAnimation(margin-top,.5s);
+}
+
+#main-content {
+
+	.breadcrumb a {
+		@anchorHighlight(@fyeYellow);
+	}
+	
+	#content {
+		width: 100%;
+		float: left;
+	}
+	
+	.region-sidebar-second {
+		float: right;
+	}
+	
+	img {
+		max-width: 100% //fixes max-width specification for ie and ff
+	}
+	
+	.video-container {
+		position: relative;
+		height: auto;
+		margin-bottom: 35px;
+		@liftedCorner;
+		background-color: #000;
+		
+		h4 {
+			display: none;
+		}
+		
+		ul.ytplayerbuttons {
+			
+			li {
+			
+				border: none;
+				
+				a {
+					@btn(#333, #fff);
+					@textShadow(,,,#333);
+					@borderRadius(4px);
+					outline: none;
+					border: groove 2px #333;
+				}
+			}
+		}
+		
+
+	}
+	
+	.article-content {
+		a {
+			text-decoration: underline;
+		}
+	}
+		
+	div.content-style {
+		position: relative;
+		@translucent > .background(#FFF, .9);
+		background-image: url('images/bg-overlays/fye-grid.png');
+		background-repeat: repeat;
+		border: none;
+		z-index: 0; // resolves issue with content-overlay layering over branding content
+		
+		.content-overlay {
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 100%;
+			height: 100%;
+			background-image: url('images/bg-overlays/fye-content-overlay2.png');
+			background-repeat: no-repeat;
+			background-position: top right;
+			z-index: -1; // resolves issue with content-overlay layering over branding content
+			@easeAnimation(background-image,3s);
+		}
+		
+		#branding {
+			float: none;
+			padding: 20px 0;
+		}
+	}
+}
+
+/******************************** SECONDARY MENU - RIGHT SIDEBAR STYLES ********************************/
+.region-sidebar-second {
+	
+	h2.block-title {
+		font-family: 'Bevan', times, serif;
+		font-size: 1.5em;
+		padding: .8em 1.09em;
+		color: @fyeYellow;
+		font-weight: normal;
+		@textShadow(0, -1px, 0, #000);
+		text-transform: none;
+		
+		@borderRadiusTop(4px);
+		@boxShadow (0, 3px, 10px, #000);
+		background-color: @black;
+		background-image: url('images/bg-overlays/blk-diag-15.png');
+		background-repeat: repeat;
+		
+		position: relative;
+		z-index: 1;
+	}
+	
+	.menu-block-wrapper {
+		@boxShadow (0px, 0px, 6px, #333);
+	}
+	
+	// global secondary menu styles
+	ul.menu > li { list-style-type: none; list-style-image: none; }
+	ul.menu > li > a { font-family: 'Oswald'; font-size: 1.1em; }
+	
+	// 1st level menu styles
+	ul.menu {
+		background-color: @fyeYellow;
+		background-image: url('images/bg-overlays/blk-reverseDiag-8.png');
+		background-repeat: repeat;
+		margin: 0;
+		z-index: 0;
+		border: solid 1px @222;
+		
+		li {
+			margin: 0;
+			
+			a {
+				display: block;
+				color: @black;
+				padding: 1em;
+				border-top: 2px groove #666;
+				padding-left: 1em;
+				@easeAnimation(padding,.4s);
+				
+				&:hover, &:active, &:focus { 
+					padding-left: 2em;
+					text-decoration: underline;
+				}
+			}
+		}
+		
+		// 2nd level menu styles
+		ul {
+			margin-left: 0;
+			background-color: @darkGray;
+			background-image: url('images/bg-overlays/blk-reverseDiag-8.png');
+			background-repeat: repeat;
+			border: none;
+			
+			li {
+				@easeAnimation();
+							
+				&:hover, &:active, &:focus {
+					@boxShadowInset(30px,,);
+					@translucent > .background(#fff,.1);
+				}
+				
+				a {
+					color: @white;
+					
+					&:hover, &:active, &:focus {
+						color: @fyeYellow;
+					}
+				}		
+			}
+		}
+		
+		ul ul {
+			border-top: 2px groove #666;
+			
+			li {
+				margin-left: 2em;
+				border-left: 1px dotted #666;
+				border-top: 1px dotted #666;
+				
+				&:first-child {
+					border-top: none;
+				}
+				
+				a {
+					border-top: none;
+					
+					&:hover, &:active, &:focus {
+						@boxShadowInset(0px,,);
+						@translucent > .background(#fff,0);
+						padding-left: 2.5em;
+					}
+				}
+			}
+		}
+	}
+}
+
+/******************************** FOOTER GLOBAL STYLES ********************************/
+#footer-wrapper {
+	background-color: @black;
+	background-image: url('images/bg-overlays/fye-footer.png');
+	background-repeat: repeat;
+	margin-top: 100px;
+	min-height: 200px;
+	color: #fff;
+	@easeAnimation(margin,);
+	
+	.container {
+		padding-top: 30px;
+	}
+	
+	.block {
+		width: 33%;
+		float: left;
+		clear: none;
+		
+		h2{
+			color: @fyeYellow;
+			font-family: 'Bevan', times, serif;
+			border-bottom: 2px groove #666;
+			text-transform: none;
+			font-size: 1.2em;
+		}
+		
+		// global secondary menu styles
+		ul.menu > li { list-style-type: none; list-style-image: none; }
+		ul.menu > li > a { font-family: 'Oswald'; font-size: 1.1em; }
+		
+		ul.menu {
+			
+			li {
+				
+				a {
+					display: block;
+					color: @white;
+					@easeAnimation(padding,.4s);
+					border-bottom: 1px dotted #666;
+					padding: 5px 0;
+					
+					&:hover, &:active, &:focus { 
+						padding-left: 1em;
+						text-decoration: underline;
+					}
+				} 
+			}
+		}
+	}
+	
+	.contact-form {
+	
+		input, textarea {
+			background-color: #333;
+			@translucent > .background(#fff,.1);
+			border: solid 1px #333;
+			color: @white;
+		}
+		
+		.form-item-copy {
+			display: none;
+		}
+		
+		input.form-submit {
+			width: auto;
+			color: @black;
+			float: right;
+			@btn();
+			margin: 0;
+		}
+		
+		input { width: 70%; }
+	}
+}
+
+/******************************** ORIENTATION STAFF PAGE STYLES ********************************/
+div#content-wrapper .view div.views-row { border-top: none; }
+
+.view-people-directory {
+	
+	.views-row {
+		width: 25%;
+		float: left;
+		text-align: center;
+	}
+	
+	.views-row-last { margin-bottom: 4em; }
+		
+	h3 { 
+		font-family: 'Bevan', times, serif;
+		font-size: 1.8em;
+		clear: both;
+		@clearfix;
+	}
+	
+	.views-field-title h4 {
+		font-family: 'Bevan', times, serif;
+	}
+}
+
+.view-important-dates {
+	.views-table {
+		h3 { font-size: 1em; text-transform: uppercase; }
+		td.views-field-field-date-2 { min-width: 220px; }
+	}
+}

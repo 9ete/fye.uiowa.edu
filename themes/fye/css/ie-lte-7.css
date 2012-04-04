@@ -1,0 +1,35 @@
+/* IE7 and below conditional styles */
+
+/***** MENU BAR *****/
+/* ie fix for transparent background-color */
+#menu-bar-wrapper {
+	background:transparent;
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#cc000000,endColorstr=#cc000000);
+    zoom: 1;
+	margin-top:-2px;
+}
+/* remove bullets from menu */
+#menu-bar ul li.leaf {
+	list-style-type: none;
+	list-style-image: none;
+}
+#menu-bar ul.menu {
+	list-style-position: outside;
+}
+/* Account for box-sizing issue for bordered li */
+#menu-bar ul li {
+	width: 24%;
+}
+/* @font-face does not render, fallback for font styling of menu item */
+#menu-bar ul li a {
+	font-weight: bold;
+}
+/* fallback for hover actions for menu bar */
+#menu-bar ul li a:hover, #menu-bar ul li a:focus, #menu-bar ul li a:active {
+	border: none;
+}
+
+
+
+
+
