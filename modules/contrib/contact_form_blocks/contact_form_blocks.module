@@ -1,0 +1,233 @@
+<?php
+
+/**
+ * Implementation of hook_block_info().
+ *
+ * @return void
+ * @author Bernhard Fürst
+ */
+function contact_form_blocks_block_info() {
+  return contact_form_blocks_get_blocks();
+}
+
+/**
+ * Implementation of hook_block_view().
+ *
+ * @return void
+ * @author Bernhard Fürst
+ */
+
+function contact_form_blocks_block_view($delta = '') {  
+  if ($delta == 0) {
+    return contact_form_global_form_content();
+  } 
+  else {
+    return contact_form_blocks_content($delta);
+  }
+}
+
+/**
+ * Implementation of hook_menu().
+ *
+ * Provide the Settings page
+ *
+ * @return void
+ * @author Bernhard Fürst
+ */
+function contact_form_blocks_menu() {
+  $items = array();
+
+  $items['admin/config/system/contact_form_blocks'] = array(
+    'title' => 'Contact blocks',
+    'description' => 'Contact blocks settings',
+    'page arguments' => array('contact_form_blocks_settings'),
+    'page callback' => 'drupal_get_form',
+    'access arguments' => array('administer site-wide contact form'),
+  );
+
+  return $items;
+}
+
+/**
+ * Implementation of hook_admin_paths().
+ *
+ * Provide the Admin paths
+ *
+ * @return void
+ * @author Bernhard Fürst
+ */
+function contact_form_blocks_admin_paths() {
+  $paths = array(
+    'admin/config/contact_form_blocks' => TRUE, 
+  );
+  return $paths;
+}
+
+/**
+ * Get the HTML code for the contact form with specific category
+ *
+ * @param int $category The contact.cid of the contact form category from the database
+ * @return array Content/title array for Blocks
+ * @author Bernhard Fürst
+ */
+function contact_form_blocks_content($category) {
+  // Get data about existing contact categories (formatted in block array)
+  $categories = contact_form_blocks_get_categories();
+
+  // Extract block title
+  $content['subject'] = $categories[$category];
+
+  // Don't allow misuse by using the contact form too often
+  if (!flood_is_allowed('contact', variable_get('contact_hourly_threshold', 3))) {
+    $content['content'] = t("You cannot send more than %number messages per hour. Please try again later.", array('%number' => variable_get('contact_hourly_threshold', 3)));
+    return $content;
+  }
+
+  // Need to know about the category in contact_form_blocks_form_contact_mail_page_alter()
+  $_SESSION['contact_form_blocks_form_category'] = $category;
+
+  // Load the contact module's code to get the contact form
+  module_load_include('inc', 'contact', 'contact.pages');
+
+  // Append the category to the original "contact_site_form" form_id to be able
+  // to handle multiple contact forms on one page
+  $mail = array();
+  $mail_form = drupal_build_form('contact_site_form', $mail);
+  $mail_form['cid']['#value'] = $category;
+  $mail_form['cid']['#access'] = FALSE;
+  $content['content'] = drupal_render($mail_form);
+
+  // Add some modifications to the CSS
+  drupal_add_css(drupal_get_path('module', 'contact_form_blocks') . '/contact_form_blocks.css');
+
+  return $content;
+}
+
+/**
+ * Get the HTML code for the contact form 
+ * 
+ * @return array Content/title array for Blocks
+ * @author Artem cross Shymko
+ */
+function contact_form_global_form_content() {
+  // Don't allow misuse by using the contact form too often
+  if (!flood_is_allowed('contact', variable_get('contact_hourly_threshold', 3))) {
+    $content['content'] = t("You cannot send more than %number messages per hour. Please try again later.", array('%number' => variable_get('contact_hourly_threshold', 3)));
+    return $content;
+  }
+
+  // Load the contact module's code to get the contact form
+  module_load_include('inc', 'contact', 'contact.pages');
+  
+  $mail = array();
+  $mail_form = drupal_build_form('contact_site_form', $mail);
+  $content['content'] = drupal_render($mail_form);
+
+  // Add some modifications to the CSS
+  drupal_add_css(drupal_get_path('module', 'contact_form_blocks') . '/contact_form_blocks.css');
+
+  return $content;
+}
+
+/**
+ * Get the contact form categories
+ *
+ * @return array Contact form categories formatted as block array
+ * @author Bernhard Fürst
+ */
+function contact_form_blocks_get_categories($cids = NULL) {
+  $categories = array();
+  $result = db_query('SELECT cid, category FROM {contact} ORDER BY weight, category');
+  foreach ($result as $row) {
+    if (!empty($cids) AND !in_array($row->cid, $cids)) {
+      continue;
+    }
+    $categories[$row->cid] = $row->category;
+  }
+  return $categories;
+}
+
+/**
+ * Format the contact form categories as block array
+ *
+ * @return void
+ * @author Bernhard Fürst
+ */
+function contact_form_blocks_get_blocks() {
+  $categories = array(t('Global'));
+  $categories = array_merge($categories, contact_form_blocks_get_categories());
+
+  $blocks = array();
+  foreach ($categories as $cid => $info) {
+    $blocks[$cid]['info'] = sprintf('%s: %s', t('Contact form'), $info);
+  }
+  return $blocks;
+}
+
+/**
+ * Build the settings form
+ *
+ * @return void
+ * @author Bernhard Fürst
+ */
+function contact_form_blocks_settings() {
+  $categories = contact_form_blocks_get_categories();
+
+  // Warning if no contact category being set
+  if (empty($categories)) {
+    drupal_set_message(filter_xss(t("You need to !link first before being able to set them here.")), array('!link' => l(t("create contact form categories"), "admin/build/contact/add")));
+    return array();
+  }
+
+  $form = array();
+
+  $form['contact_form_blocks_categories'] = array(
+    '#type' => 'checkboxes',
+    '#title' => t('Categories to be shown in the site wide contact form'),
+    '#default_value' => variable_get('contact_form_blocks_site_wide_categories', array_keys($categories)),
+    '#options' => $categories,
+  );
+
+  $form['submit'] = array(
+  '#type' => 'submit',
+  '#value' => t('Save configuration'),
+  );
+
+  return $form;
+}
+
+
+/**
+ * Save the settings
+ *
+ * @return void
+ * @author Bernhard Fürst
+ */
+
+function contact_form_blocks_settings_submit($form, &$form_state) {
+  variable_set('contact_form_blocks_site_wide_categories', $form_state['values']['contact_form_blocks_categories']);
+  drupal_set_message(t('The settings have been saved'));
+}
+
+/**
+ * Implements hook_form_alter() 
+ * 
+ * @author Artem cross Shymko
+ */
+function contact_form_blocks_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'contact_site_form') {
+    $form['#submit'][] = 'contact_form_blocks_submit';
+  }
+}
+
+/**
+ * Extra form submission handler for contact_site_form().
+ * 
+ * @author Artem cross Shymko
+ */
+function contact_form_blocks_submit($form, &$form_state) {
+  // Redirect user back to page with form
+  // instead of baseurl
+  $destination = drupal_get_destination();
+  $form_state['redirect'] = $destination['destination'];		
+}

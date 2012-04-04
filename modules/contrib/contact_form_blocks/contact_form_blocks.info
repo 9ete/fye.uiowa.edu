@@ -1,0 +1,15 @@
+; $Id:
+name = Contact Form Blocks
+description = Makes your site-wide contact forms available as Drupal Blocks.
+core = 7.x
+version = "7.x-1.0-dev"
+dependencies[] = contact
+
+
+
+; Information added by drupal.org packaging script on 2011-10-29
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "contact_form_blocks"
+datestamp = "1319889854"
+
